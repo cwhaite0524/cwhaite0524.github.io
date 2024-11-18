@@ -226,7 +226,7 @@
             <div id="pizza-menu">
                 <h3>Pizzas</h3>
                 <div class="menu-item">
-		<img src="https://img.freepik.com/premium-photo/pizza-with-sausage-ai-generated_406939-10786.jpg"
+		<img src="https://img.freepik.com/premium-photo/pepperoni-pizza-with-pizza-sauce-mozzarella-cheese-pepperoni-pizza-table-with-ingredients_73989-19658.jpg?w=1380"
                     <h4>Margherita</h4>
                     <p>Classic tomato sauce, mozzarella, and basil</p>
                     <button onclick="addToCart('Margherita', 12)">Add to Cart - $12</button>
