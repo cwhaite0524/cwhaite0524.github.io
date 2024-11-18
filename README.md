@@ -5,114 +5,174 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crust & Co</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            background-color: #f7f7f7;
+            color: #4f0d0d;
+
         }
+
         header {
-            background-color: #f4f4f4;
+            background-color: #4f0d0d;
+            color: white;
             padding: 1rem;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 600;
         }
         nav {
-            background-color: #333;
-            color: #fff;
+            background-color: #F39666;
             padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         nav ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
         }
         nav ul li {
-            display: inline;
-            margin-right: 10px;
+            margin: 0 15px;
         }
         nav ul li a {
-            color: #fff;
+            color: white;
             text-decoration: none;
-            cursor: pointer;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
-            overflow: hidden;
             padding: 20px;
         }
         .menu-item {
-            border: 1px solid #ddd;
-            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
             margin-bottom: 20px;
-            border-radius: 8px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
-        .menu-item img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 4px;
+        .menu-item:hover {
+            transform: translateY(-5px);
         }
-        .menu-item-content {
-            flex: 1;
-        }
-        .menu-item-content h4 {
+        .menu-item h4 {
+            color: #ff6b6b;
             margin-top: 0;
-            color: #333;
         }
-        .menu-item button {
-            background-color: #4CAF50;
+        button {
+            background-color: #4ecdc4;
             color: white;
-            padding: 10px 15px;
             border: none;
-            border-radius: 4px;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .menu-item button:hover {
-            background-color: #45a049;
-        }
-        form {
-            background-color: #f4f4f4;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        input[type="text"], input[type="email"], select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        button:hover {
+            background-color: #45b7aa;
         }
         .page {
             display: none;
+            animation: fadeIn 0.5s;
         }
         .page.active {
             display: block;
         }
-        #cart {
-            background-color: #f9f9f9;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #4ecdc4;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        #checkout {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            transition: right 0.3s;
+            z-index: 1002;
             padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
         }
-        #cart-items {
-            list-style: none;
-            padding: 0;
+        #checkout.active {
+            right: 0;
         }
-        #cart-items li {
+        #close-checkout {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, select {
+            width: 100%;
             padding: 10px;
-            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4ecdc4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45b7aa;
         }
     </style>
 </head>
@@ -128,11 +188,37 @@
         </ul>
     </nav>
 
+    <div id="cart-icon" onclick="toggleCheckout()">
+        🛒
+        <span id="cart-count">0</span>
+    </div>
+
+    <div id="checkout">
+        <span id="close-checkout" onclick="toggleCheckout()">✖</span>
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="cart-total">0</span></p>
+        <form id="order-form">
+            <h3>Order Details</h3>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <input type="text" id="phone" placeholder="Your Phone Number" required>
+            <input type="text" id="address" placeholder="Delivery Address">
+            <select id="order-type" required>
+                <option value="">Select Order Type</option>
+                <option value="delivery">Delivery</option>
+                <option value="pickup">Pickup</option>
+            </select>
+            <input type="submit" value="Place Order">
+        </form>
+    </div>
+
     <div class="container">
         <div id="home" class="page active">
             <h2>Welcome to Crust & Co</h2>
-            <p>Delicious pizzas available for pickup and delivery. Explore our menu and place your order today!</p>
-            <img src="/api/placeholder/800/400" alt="Pizza restaurant interior" style="width: 100%; border-radius: 8px;">
+            <p>Indulge in our delicious pizzas, available for pickup and delivery. Explore our menu and place your order today for a slice of heaven!</p>
+		<p>At Crust & Co, we believe that every pizza should be a celebration of flavor and quality. Indulge in our mouthwatering selection of pizzas, crafted with the freshest ingredients and topped to perfection. Whether you prefer the convenience of pickup or the comfort of delivery, we’re here to bring a slice of heaven right to your doorstep. Explore our menu today, and treat yourself to a delicious experience that you won't forget! Your perfect pizza awaits!</p>
+<img src="websitepizza.jpg">
         </div>
 
         <div id="menu" class="page">
@@ -140,89 +226,60 @@
             <div id="pizza-menu">
                 <h3>Pizzas</h3>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Margherita Pizza">
-                    <div class="menu-item-content">
-                        <h4>Margherita</h4>
-                        <p>Classic tomato sauce, mozzarella, and basil</p>
-                        <button onclick="addToCart('Margherita', 12)">Add to Cart - $12</button>
-                    </div>
+		<img src="Crust & Co.jpg"
+                    <h4>Margherita</h4>
+                    <p>Classic tomato sauce, mozzarella, and basil</p>
+                    <button onclick="addToCart('Margherita', 12)">Add to Cart - $12</button>
                 </div>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Pepperoni Pizza">
-                    <div class="menu-item-content">
-                        <h4>Pepperoni</h4>
-                        <p>Tomato sauce, mozzarella, and pepperoni</p>
-                        <button onclick="addToCart('Pepperoni', 14)">Add to Cart - $14</button>
-                    </div>
+                    <h4>Pepperoni</h4>
+                    <p>Tomato sauce, mozzarella, and pepperoni</p>
+                    <button onclick="addToCart('Pepperoni', 14)">Add to Cart - $14</button>
                 </div>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Vegetarian Pizza">
-                    <div class="menu-item-content">
-                        <h4>Vegetarian</h4>
-                        <p>Tomato sauce, mozzarella, bell peppers, onions, and mushrooms</p>
-                        <button onclick="addToCart('Vegetarian', 13)">Add to Cart - $13</button>
-                    </div>
+                    <h4>Vegetarian</h4>
+                    <p>Tomato sauce, mozzarella, bell peppers, onions, and mushrooms</p>
+                    <button onclick="addToCart('Vegetarian', 13)">Add to Cart - $13</button>
                 </div>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Hawaiian Pizza">
-                    <div class="menu-item-content">
-                        <h4>Hawaiian</h4>
-                        <p>Tomato sauce, mozzarella, ham, and pineapple</p>
-                        <button onclick="addToCart('Hawaiian', 15)">Add to Cart - $15</button>
-                    </div>
+                    <h4>Hawaiian</h4>
+                    <p>Tomato sauce, mozzarella, ham, and pineapple</p>
+                    <button onclick="addToCart('Hawaiian', 15)">Add to Cart - $15</button>
                 </div>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="BBQ Chicken Pizza">
-                    <div class="menu-item-content">
-                        <h4>BBQ Chicken</h4>
-                        <p>BBQ sauce, mozzarella, grilled chicken, and red onions</p>
-                        <button onclick="addToCart('BBQ Chicken', 16)">Add to Cart - $16</button>
-                    </div>
+                    <h4>BBQ Chicken</h4>
+                    <p>BBQ sauce, mozzarella, grilled chicken, and red onions</p>
+                    <button onclick="addToCart('BBQ Chicken', 16)">Add to Cart - $16</button>
                 </div>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Supreme Pizza">
-                    <div class="menu-item-content">
-                        <h4>Supreme</h4>
-                        <p>Tomato sauce, mozzarella, pepperoni, sausage, bell peppers, onions, and olives</p>
-                        <button onclick="addToCart('Supreme', 17)">Add to Cart - $17</button>
-                    </div>
+                    <h4>Supreme</h4>
+                    <p>Tomato sauce, mozzarella, pepperoni, sausage, bell peppers, onions, and olives</p>
+                    <button onclick="addToCart('Supreme', 17)">Add to Cart - $17</button>
                 </div>
             </div>
             
             <div id="drinks-menu">
                 <h3>Soft Drinks</h3>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Cola">
-                    <div class="menu-item-content">
-                        <h4>Cola</h4>
-                        <button onclick="addToCart('Cola', 2)">Add to Cart - $2</button>
-                    </div>
+                    <h4>Cola</h4>
+                    <button onclick="addToCart('Cola', 2)">Add to Cart - $2</button>
                 </div>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Lemon-Lime Soda">
-                    <div class="menu-item-content">
-                        <h4>Lemon-Lime Soda</h4>
-                        <button onclick="addToCart('Lemon-Lime Soda', 2)">Add to Cart - $2</button>
-                    </div>
+                    <h4>Lemon-Lime Soda</h4>
+                    <button onclick="addToCart('Lemon-Lime Soda', 2)">Add to Cart - $2</button>
                 </div>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Orange Soda">
-                    <div class="menu-item-content">
-                        <h4>Orange Soda</h4>
-                        <button onclick="addToCart('Orange Soda', 2)">Add to Cart - $2</button>
-                    </div>
+                    <h4>Orange Soda</h4>
+                    <button onclick="addToCart('Orange Soda', 2)">Add to Cart - $2</button>
                 </div>
             </div>
             
             <div id="special-menu">
                 <h3>Special</h3>
                 <div class="menu-item">
-                    <img src="/api/placeholder/200/150" alt="Family Meal Deal">
-                    <div class="menu-item-content">
-                        <h4>Family Meal Deal</h4>
-                        <p>2 large pizzas, 4 soft drinks, and a dozen donuts</p>
-                        <button onclick="addToCart('Family Meal Deal', 40)">Add to Cart - $40</button>
-                    </div>
+                    <h4>Family Meal Deal</h4>
+                    <p>2 large pizzas, 4 soft drinks, and a dozen donuts</p>
+                    <button onclick="addToCart('Family Meal Deal', 40)">Add to Cart - $40</button>
                 </div>
             </div>
         </div>
@@ -232,27 +289,6 @@
             <p>Address: 123 Pizza Street, Pizzaville, PZ 12345</p>
             <p>Phone: (555) 123-4567</p>
             <p>Hours: Mon-Sun 11:00 AM - 10:00 PM</p>
-            
-            <h3>Checkout</h3>
-            <div id="cart">
-                <h4>Your Cart</h4>
-                <ul id="cart-items"></ul>
-                <p>Total: $<span id="cart-total">0</span></p>
-            </div>
-            
-            <form id="order-form">
-                <h4>Order Details</h4>
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="email" id="email" placeholder="Your Email" required>
-                <input type="text" id="phone" placeholder="Your Phone Number" required>
-                <input type="text" id="address" placeholder="Delivery Address">
-                <select id="order-type" required>
-                    <option value="">Select Order Type</option>
-                    <option value="delivery">Delivery</option>
-                    <option value="pickup">Pickup</option>
-                </select>
-                <input type="submit" value="Place Order">
-            </form>
         </div>
     </div>
 
@@ -260,23 +296,22 @@
         let cart = [];
         
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            
-            // Show the selected page
             document.getElementById(pageId).classList.add('active');
         }
         
         function addToCart(item, price) {
             cart.push({item, price});
             updateCart();
+            showCheckout();
         }
         
         function updateCart() {
             const cartItems = document.getElementById('cart-items');
             const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.getElementById('cart-count');
             
             cartItems.innerHTML = '';
             let total = 0;
@@ -289,11 +324,23 @@
             });
             
             cartTotal.textContent = total;
+            cartCount.textContent = cart.length;
+        }
+        
+        function toggleCheckout() {
+            document.getElementById('checkout').classList.toggle('active');
+        }
+        
+        function showCheckout() {
+            document.getElementById('checkout').classList.add('active');
         }
         
         document.getElementById('order-form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Order placed successfully!');
+            cart = [];
+            updateCart();
+            toggleCheckout();
         });
     </script>
 </body>
