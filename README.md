@@ -218,7 +218,7 @@
             <h2>Welcome to Crust & Co</h2>
             <p>Indulge in our delicious pizzas, available for pickup and delivery. Explore our menu and place your order today for a slice of heaven!</p>
 		<p>At Crust & Co, we believe that every pizza should be a celebration of flavor and quality. Indulge in our mouthwatering selection of pizzas, crafted with the freshest ingredients and topped to perfection. Whether you prefer the convenience of pickup or the comfort of delivery, we’re here to bring a slice of heaven right to your doorstep. Explore our menu today, and treat yourself to a delicious experience that you won't forget! Your perfect pizza awaits!</p>
-<img src="websitepizza.jpg">
+<img src="https://img.freepik.com/premium-photo/pepperoni-pizza-with-pizza-sauce-mozzarella-cheese-pepperoni-pizza-table-with-ingredients_73989-19658.jpg?w=1380">
         </div>
 
         <div id="menu" class="page">
@@ -226,7 +226,6 @@
             <div id="pizza-menu">
                 <h3>Pizzas</h3>
                 <div class="menu-item">
-		<img src="https://img.freepik.com/premium-photo/pepperoni-pizza-with-pizza-sauce-mozzarella-cheese-pepperoni-pizza-table-with-ingredients_73989-19658.jpg?w=1380"
                     <h4>Margherita</h4>
                     <p>Classic tomato sauce, mozzarella, and basil</p>
                     <button onclick="addToCart('Margherita', 12)">Add to Cart - $12</button>
